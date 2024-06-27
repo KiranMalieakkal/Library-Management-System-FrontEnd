@@ -2,14 +2,14 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export type NewPost = {
-  name: string;
+  ISBN: string;
 };
 
 function BorrowBook() {
   const queryClient = useQueryClient();
   const {
-    mutate: postDeveloper,
-    error: postError,
+    mutate: borrowBook,
+    error: putError,
     isPending,
   } = useMutation<unknown, Error, NewPost>({
     mutationFn: (newPost) =>
@@ -34,12 +34,12 @@ function BorrowBook() {
   function handleChange(
     event: ChangeEvent<HTMLInputElement | HTMLSelectElement>
   ) {
-    const { name, value } = event.target;
+    const { value } = event.target;
+    console.log(value);
     setError("");
-    setFormData((prevFormData) => {
+    setFormData(() => {
       return {
-        ...prevFormData,
-        [name]: value,
+        ISBN: value,
       };
     });
   }
@@ -47,14 +47,14 @@ function BorrowBook() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (formData.ISBN == "") {
-      setError("Enter full name");
+      setError("Enter ISBN");
     } else {
       setError("");
       setFormData({
         ISBN: "",
       });
-      postDeveloper({
-        name: formData.ISBN,
+      borrowBook({
+        ISBN: formData.ISBN,
       });
     }
   }
@@ -62,14 +62,14 @@ function BorrowBook() {
     <>
       <div className="formContainer">
         <h2>Borrow A Book</h2>
-        <form id="addDeveloperForm" onSubmit={handleSubmit}>
+        <form id="borrowBookForm" onSubmit={handleSubmit}>
           <input
             type="text"
-            id="fullnameID"
+            id="isbnID"
             placeholder="ISBN"
             onChange={handleChange}
-            name="fullName"
-            className="form__input-name"
+            name="ISBN"
+            className="form__input_isbn"
             value={formData.ISBN}
           />
           <br />
@@ -77,8 +77,8 @@ function BorrowBook() {
           {invalidInputError && (
             <p className="form__error-message">{invalidInputError}</p>
           )}
-          {postError && (
-            <p className="form__error-message">{`${postError.message} due to server issue. Please try again later`}</p>
+          {putError && (
+            <p className="form__error-message">{`${putError.message} due to server issue. Please try again later`}</p>
           )}
           {isPending && <p>Loading...</p>}
         </form>

@@ -2,8 +2,10 @@ import "./App.css";
 
 import { useQuery } from "@tanstack/react-query";
 import Header from "./components/Header";
-import ListBooks from "./ListBooks";
+import ListBooks from "./components/ListBooks";
 import BorrowBook from "./components/BorrowBooks";
+import ListLibrary from "./components/ListLibrary";
+import ReturnBook from "./components/ReturnBooks";
 
 function App() {
   const { data } = useQuery({
@@ -17,8 +19,10 @@ function App() {
   return (
     <>
       <Header />
+      <ListLibrary />
       <ListBooks />
       <BorrowBook />
+      <ReturnBook />
     </>
   );
 }

@@ -4,8 +4,10 @@ function ListBooks() {
   }
   return (
     <>
-      <h2>Available Books</h2>
-      <button onClick={handleClick}>List Available Books</button>
+      <div className="container">
+        <h2>Available Books</h2>
+        <button onClick={handleClick}>List Available Books</button>
+      </div>
     </>
   );
 }
