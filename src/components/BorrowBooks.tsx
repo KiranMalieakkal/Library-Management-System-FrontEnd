@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export type NewPost = {
-  ISBN: string;
+  isbn: string;
 };
 
 function BorrowBook() {
@@ -13,7 +13,7 @@ function BorrowBook() {
     isPending,
   } = useMutation<unknown, Error, NewPost>({
     mutationFn: (newPost) =>
-      fetch("http://localhost:300", {
+      fetch("http://localhost:8080/api/books/borrow", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -26,7 +26,7 @@ function BorrowBook() {
   });
 
   const [formData, setFormData] = useState({
-    ISBN: "",
+    isbn: "",
   });
 
   const [invalidInputError, setError] = useState("");
@@ -39,22 +39,22 @@ function BorrowBook() {
     setError("");
     setFormData(() => {
       return {
-        ISBN: value,
+        isbn: value,
       };
     });
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (formData.ISBN == "") {
+    if (formData.isbn == "") {
       setError("Enter ISBN");
     } else {
       setError("");
       setFormData({
-        ISBN: "",
+        isbn: "",
       });
       borrowBook({
-        ISBN: formData.ISBN,
+        isbn: formData.isbn,
       });
     }
   }
@@ -68,9 +68,9 @@ function BorrowBook() {
             id="isbnID"
             placeholder="ISBN"
             onChange={handleChange}
-            name="ISBN"
+            name="isbn"
             className="form__input_isbn"
-            value={formData.ISBN}
+            value={formData.isbn}
           />
           <br />
           <button className="form__button-borrow">Borrow</button>

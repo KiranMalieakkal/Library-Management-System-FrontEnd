@@ -11,16 +11,16 @@ function App() {
   const { data } = useQuery({
     queryKey: ["fetch"],
     queryFn: () =>
-      fetch("http://localhost:300")
+      fetch("http://localhost:8080/api/books")
         .then((response) => response.json())
-        .then((data) => data.salties),
+        .then((data) => data),
   });
 
   return (
     <>
       <Header />
       <ListLibrary />
-      <ListBooks />
+      <ListBooks data={data} />
       <BorrowBook />
       <ReturnBook />
     </>

@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 export type NewPost = {
-  ISBN: string;
+  isbn: string;
 };
 
 function ReturnBook() {
@@ -13,7 +13,7 @@ function ReturnBook() {
     isPending,
   } = useMutation<unknown, Error, NewPost>({
     mutationFn: (newPost) =>
-      fetch("http://localhost:300", {
+      fetch("http://localhost:8080/api/books/return", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json",
@@ -54,7 +54,7 @@ function ReturnBook() {
         ISBN: "",
       });
       returnBook({
-        ISBN: formData.ISBN,
+        isbn: formData.ISBN,
       });
     }
   }
