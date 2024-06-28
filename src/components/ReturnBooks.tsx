@@ -26,7 +26,7 @@ function ReturnBook() {
   });
 
   const [formData, setFormData] = useState({
-    ISBN: "",
+    isbn: "",
   });
 
   const [invalidInputError, setError] = useState("");
@@ -39,22 +39,22 @@ function ReturnBook() {
     setError("");
     setFormData(() => {
       return {
-        ISBN: value,
+        isbn: value,
       };
     });
   }
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    if (formData.ISBN == "") {
+    if (formData.isbn == "") {
       setError("Enter ISBN");
     } else {
       setError("");
       setFormData({
-        ISBN: "",
+        isbn: "",
       });
       returnBook({
-        isbn: formData.ISBN,
+        isbn: formData.isbn,
       });
     }
   }
@@ -70,7 +70,7 @@ function ReturnBook() {
             onChange={handleChange}
             name="ISBN"
             className="form__input_isbn"
-            value={formData.ISBN}
+            value={formData.isbn}
           />
           <br />
           <button className="form__button-return">Return</button>
