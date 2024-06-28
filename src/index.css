@@ -136,7 +136,8 @@ form input[type="text"] {
 }
 
 .cardContainer {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
   overflow-x: scroll;
   flex-wrap: wrap;
   padding: 16px 0;

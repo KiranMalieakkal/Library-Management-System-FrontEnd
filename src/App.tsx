@@ -6,6 +6,7 @@ import ListBooks from "./components/ListBooks";
 import BorrowBook from "./components/BorrowBooks";
 import ListLibrary from "./components/ListLibrary";
 import ReturnBook from "./components/ReturnBooks";
+import AddBooks from "./components/AddBooks";
 
 function App() {
   const { data } = useQuery({
@@ -23,6 +24,7 @@ function App() {
       <ListBooks data={data} />
       <BorrowBook />
       <ReturnBook />
+      <AddBooks />
     </>
   );
 }

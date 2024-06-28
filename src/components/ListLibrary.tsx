@@ -30,9 +30,9 @@ function ListLibrary() {
             name="library"
           >
             <option value="all">All</option>
-            <option value="lib1">Library 1</option>
-            <option value="lib2">Library 2</option>
-            <option value="lib3">Library 3</option>
+            <option value="lib1">Stockholm Public Library</option>
+            <option value="lib2">National Library of Sweden</option>
+            <option value="lib3">Nobel Library</option>
           </select>
         </div>
       </div>
